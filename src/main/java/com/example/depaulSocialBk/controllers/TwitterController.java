@@ -100,9 +100,4 @@ public class TwitterController {
     }
     return users;
   }
-  public static void main (String[] args) throws Exception {
-    TwitterController controller = new TwitterController();
-    List<TwitterUser> list = controller.getTweetsBasedOnHashTag("GoT");
-    System.out.println(Arrays.asList(list));
-  }
 }
