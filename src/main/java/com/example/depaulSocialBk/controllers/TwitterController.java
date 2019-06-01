@@ -84,7 +84,9 @@ public class TwitterController {
     QueryResult result = twitter.search(query);
     tweets = result.getTweets();
     for (Status tweet : tweets) {
-      TwitterUser user = new TwitterUser(tweet.getUser().getName(), tweet.getText());
+      TwitterUser user = new TwitterUser(tweet.getUser().getName(),
+          tweet.getText(),
+        tweet.getUser().getOriginalProfileImageURLHttps());
       twitterUsers.add(user);
     }
     return twitterUsers;
@@ -95,9 +97,16 @@ public class TwitterController {
     List <Status> tweets = twitterClient.getHomeTimeline();
     for (Status tweet : tweets) {
       TwitterUser user = new TwitterUser(tweet.getUser().getName(),
-        tweet.getText());
+        tweet.getText(), tweet.getUser().getOriginalProfileImageURLHttps());
       users.put(user.getUserName(), user.getTweet());
     }
     return users;
   }
+//  public static void main (String[] args) throws Exception {
+//    TwitterController controller = new TwitterController();
+//    List<TwitterUser> list = controller.getTweetsBasedOnHashTag("#GoT");
+//    for (TwitterUser user : list) {
+//      System.out.println(user.getPhotoUrl());
+//    }
+//  }
 }
